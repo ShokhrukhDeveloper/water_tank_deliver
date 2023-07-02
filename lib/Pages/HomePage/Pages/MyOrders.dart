@@ -9,7 +9,7 @@ import '../../../Data/Model/Product.dart';
 import '../../Widgets/ModalBottomSheet.dart';
 import '../../Widgets/ProductItemCart.dart';
 import '../../Widgets/progress.dart';
-import 'Notification/OrderItem.dart';
+import '../../Widgets/OrderItem.dart';
 
 class MyOrders extends StatefulWidget {
   MyOrders({Key? key}) : super(key: key);

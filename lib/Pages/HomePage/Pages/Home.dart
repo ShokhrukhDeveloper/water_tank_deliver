@@ -9,7 +9,7 @@ import 'package:water_tank_deliver/Data/Model/OrdersPagenated.dart';
 import 'package:water_tank_deliver/Data/Model/Product.dart';
 import 'package:water_tank_deliver/Data/Urls/Urls.dart';
 import 'package:water_tank_deliver/Pages/HomePage/Pages/MyOrders.dart';
-import 'package:water_tank_deliver/Pages/HomePage/Pages/Notification/OrderItem.dart';
+import 'package:water_tank_deliver/Pages/Widgets/OrderItem.dart';
 import 'package:water_tank_deliver/Pages/Widgets/ProductItem.dart';
 import 'package:water_tank_deliver/Pages/Widgets/progress.dart';
 

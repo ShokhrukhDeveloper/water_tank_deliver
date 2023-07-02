@@ -5,7 +5,7 @@ import 'Pages/Account.dart';
 import 'Pages/MyOrders.dart';
 import 'Pages/Home.dart';
 
-import 'Pages/Notification/Notification.dart' as N;
+import 'Pages/Notification.dart' as N;
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
 
