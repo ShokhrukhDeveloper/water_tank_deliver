@@ -4,6 +4,7 @@ class AppUrls
   static const String _base="https://10.0.2.2:7152";
   static const String _baseApi="$_base/api";
   static const String login="$_baseApi/Auth/Deliver";
+  static const String statisticsToday="$_baseApi/Deliver/Statistics/Today";
   static String  orderCompany({ int limit=10,int page=1})=>"$_baseApi/Order/Company?limit=$limit&page=$page";
   static String  orderAccepted({ int limit=10,int page=1})=>"$_baseApi/Order/Deliver/Accepted?limit=$limit&page=$page";
   static String  orderAccept({ required int orderId})=>"$_baseApi/Order/Deliver/$orderId/Accept";

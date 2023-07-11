@@ -1,9 +1,32 @@
 import 'package:flutter/material.dart';
+import 'package:water_tank_deliver/API/API.dart';
+import 'package:water_tank_deliver/Data/Model/Statistics.dart';
 
 
-class Notification extends StatelessWidget {
-   Notification({Key? key}) : super(key: key);
+class Notification extends StatefulWidget {
+    Notification({Key? key}) : super(key: key);
 
+  @override
+  State<Notification> createState() => _NotificationState();
+}
+
+class _NotificationState extends State<Notification> {
+Future<void> getData()async{
+var result = await API.getStatisticsToday();
+if(result is Statistics){
+  statistics=result;
+  setState(() {
+
+  });
+}
+}
+@override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    getData();
+  }
+Statistics? statistics;
 
   @override
   Widget build(BuildContext context) {
@@ -16,10 +39,9 @@ class Notification extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: Text("Today’s order".toUpperCase(),
-              style: TextStyle(
+              style: const TextStyle(
                fontWeight: FontWeight.bold ,
                 fontSize: 20
-
               ),
               ),
             ),
@@ -42,7 +64,7 @@ class Notification extends StatelessWidget {
                           )
                         ),
                          width: double.infinity,
-                         child: Center(child: Text("Suv")),
+                         child: const Center(child: Text("Suv")),
                        ),
                      ),
                      Container(
@@ -53,7 +75,7 @@ class Notification extends StatelessWidget {
                            )
                        ),
                        width: (MediaQuery.of(context).size.width-25)*0.10,
-                       child: Center(child: Text("Soni")),
+                       child: const Center(child: Text("Soni")),
                      ),
                      Container(
                        decoration: const BoxDecoration(
@@ -63,7 +85,7 @@ class Notification extends StatelessWidget {
                            )
                        ),
                        width: (MediaQuery.of(context).size.width-25)*0.20,
-                       child: Center(child: Text("Narxi")),
+                       child: const Center(child: Text("Narxi")),
                      ),
                      Container(
                        decoration: const BoxDecoration(
@@ -77,52 +99,54 @@ class Notification extends StatelessWidget {
                      ),
                     ],
                   ),
-                  Row(
-                    children: [
-                      Expanded(
-                        child: Container(
-                          decoration: const BoxDecoration(
-                              border: Border(
-                                  right: BorderSide(color: Colors.blue),
+                  if(statistics!=null)
+                   ...statistics!.delivered!.map((e) => Container(
+                     decoration: BoxDecoration(border: Border(bottom: BorderSide(color: Colors.grey))),
+                     child: Row(
+                       children: [
+                         Expanded(
+                           child: Container(
+                             decoration: const BoxDecoration(
+                                 border: Border(
+                                   right: BorderSide(color: Colors.blue),
 
-                              )
-                          ),
-                          width: double.infinity,
-                          child: const Center(child: Text("Suv")),
-                        ),
-                      ),
-                      Container(
-                        decoration: const BoxDecoration(
-                            border: Border(
-                                right: BorderSide(color: Colors.blue),
+                                 )
+                             ),
+                             width: double.infinity,
+                             child:  Center(child: Text("${e.productName}")),
+                           ),
+                         ),
+                         Container(
+                           decoration: const BoxDecoration(
+                               border: Border(
+                                 right: BorderSide(color: Colors.blue),
 
-                            )
-                        ),
-                        width: (MediaQuery.of(context).size.width-25)*0.10,
-                        child: Center(child: Text("Soni")),
-                      ),
-                      Container(
-                        decoration: const BoxDecoration(
-                            border: Border(
-                                right: BorderSide(color: Colors.blue),
-
-                            )
-                        ),
-                        width: (MediaQuery.of(context).size.width-25)*0.20,
-                        child: const Center(child: Text("Narxi")),
-                      ),
-                      Container(
-                        decoration: const BoxDecoration(
-                            border: Border(
+                               )
+                           ),
+                           width: (MediaQuery.of(context).size.width-25)*0.10,
+                           child:  Center(child: Text("${e.quantity}")),
+                         ),
+                         Container(
+                           decoration: const BoxDecoration(
+                               border: Border(
+                                 right: BorderSide(color: Colors.blue),
+                               )),
+                           width: (MediaQuery.of(context).size.width-25)*0.20,
+                           child:  Center(child: Text("${e.price}")),
+                         ),
+                         Container(
+                           decoration: const BoxDecoration(
+                               border: Border(
 
 
-                            )
-                        ),
-                        width: (MediaQuery.of(context).size.width-25)*0.35,
-                        child: const Center(child: Text("Summa")),
-                      ),
-                    ],
-                  ),
+                               )
+                           ),
+                           width: (MediaQuery.of(context).size.width-25)*0.35,
+                           child:  Center(child: Text("${e.totalPrice}")),
+                         ),
+                       ],
+                     ),
+                   ),)
 
                 ],
               ),

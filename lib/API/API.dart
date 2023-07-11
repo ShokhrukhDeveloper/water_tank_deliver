@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/foundation.dart';
 import 'package:http/http.dart' as http;
+import 'package:water_tank_deliver/Data/Model/Statistics.dart';
 import 'package:water_tank_deliver/Pages/Widgets/progress.dart';
 
 
@@ -105,6 +106,35 @@ class API
           print(r);
         }
         return  Order.fromJson(r);
+      }
+      return result.body;
+    }catch(e)
+    {
+      if (kDebugMode) {
+        print(e);
+      }
+    }
+  }
+  static Future getStatisticsToday()async
+  {
+    try{
+
+
+      var result = await http.get(Uri.parse(AppUrls.statisticsToday),
+        headers: {'Content-Type': 'application/json; charset=UTF-8',
+          'accept':'*/*',"Authorization":"Bearer ${LocalStorage.getToken()}" });
+
+      if (kDebugMode) {
+        print(result.statusCode);
+        print(result.body);
+      }
+      if(result.statusCode==200)
+      {
+        var r = jsonDecode(result.body);
+        if (kDebugMode) {
+          print(r);
+        }
+        return  Statistics.fromJson(r);
       }
       return result.body;
     }catch(e)
